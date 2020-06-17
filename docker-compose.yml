@@ -3,16 +3,19 @@ services:
     haproxy:
         container_name: haproxy
         image: haproxy
+        restart: always
         ports:
             - "80:8080"
         volumes:
             - ./haproxy:/usr/local/etc/haproxy
+            
 
     pwd:
         # pwd daemon container always needs to be named this way
         container_name: pwd
         # use the latest golang image
         image: golang
+        restart: always
         # go to the right place and starts the app
         command: /bin/sh -c 'ssh-keygen -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key >/dev/null; cd /go/src/; go run api.go -save /pwd/sessions -name l2'
         volumes:
@@ -25,6 +28,7 @@ services:
         container_name: l2
         # use the latest golang image
         image: golang
+        restart: always
         # go to the right place and starts the app
         command: /bin/sh -c 'ssh-keygen -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key >/dev/null; cd /go/src/router/l2; go run l2.go -ssh_key_path /etc/ssh/ssh_host_rsa_key -name l2 -save /pwd/networks'
         volumes:
