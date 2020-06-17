@@ -173,7 +173,16 @@
         if (response.data.created_at) {
           $scope.expiresAt = moment(response.data.expires_at);
           setInterval(function() {
-            $scope.ttl = moment.utc($scope.expiresAt.diff(moment())).format('HH:mm:ss');
+            var daysLeft = moment.utc($scope.expiresAt.diff(moment())).format('D');
+            daysLeft -= 1
+            if(daysLeft > 9) {
+              daysLeft += ':'
+            } else if (daysLeft > 0) {
+              daysLeft = '0' + daysLeft + ':'
+            } else {
+              daysLeft = ''
+            }
+            $scope.ttl = daysLeft + moment.utc($scope.expiresAt.diff(moment())).format('HH:mm:ss');
             $scope.$apply();
           }, 1000);
         }
