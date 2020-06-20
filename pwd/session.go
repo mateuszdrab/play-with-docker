@@ -95,6 +95,10 @@ func (p *pwd) SessionExtend(s *types.Session) error {
 
 	d, err := time.ParseDuration("24h")
 
+	if err != nil {
+		log.Fatalf("Cannot parse duration Got: %v", err)
+	}
+
 	s.ExpiresAt = s.ExpiresAt.Add(d)
 
 	return nil
