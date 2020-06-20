@@ -14,6 +14,7 @@ var (
 	SESSION_NEW              = EventType("session new")
 	SESSION_END              = EventType("session end")
 	SESSION_READY            = EventType("session ready")
+	SESSION_UPDATED          = EventType("session updated")
 	SESSION_BUILDER_OUT      = EventType("session builder out")
 	PLAYGROUND_NEW           = EventType("playground_new")
 )

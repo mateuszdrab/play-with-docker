@@ -270,6 +270,10 @@
           $scope.setSessionState(ready);
         });
 
+        socket.on('session updated', function(sessionId) {
+          $scope.getSession(sessionId);
+        });
+
         socket.on('session builder out', function(data) {
           $scope.builderTerminal.write(data);
         });

@@ -101,6 +101,8 @@ func (p *pwd) SessionExtend(s *types.Session) error {
 
 	s.ExpiresAt = s.ExpiresAt.Add(d)
 
+	p.event.Emit(event.SESSION_UPDATED, s.Id)
+
 	return nil
 }
 
