@@ -93,7 +93,7 @@ func (p *pwd) SessionExtend(s *types.Session) error {
 
 	log.Printf("Extending session [%s]\n", s.Id)
 
-	d, err = time.ParseDuration("24h")
+	d, err := time.ParseDuration("24h")
 
 	s.ExpiresAt = s.ExpiresAt.Add(d)
 
