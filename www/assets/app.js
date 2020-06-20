@@ -167,6 +167,17 @@
       });
 
     }
+    $scope.updateSession = function(sessionId) {
+      $http({
+        method: 'GET',
+        url: '/sessions/' + $scope.sessionId,
+      }).then(function(response) {
+        if (response.data.created_at) {
+          $scope.expiresAt = moment(response.data.expires_at);
+        }
+      });
+    }
+
     $scope.getSession = function(sessionId) {
       $http({
         method: 'GET',
@@ -271,7 +282,7 @@
         });
 
         socket.on('session updated', function(sessionId) {
-          $scope.getSession(sessionId);
+          $scope.updateSession(sessionId);
         });
 
         socket.on('session builder out', function(data) {
