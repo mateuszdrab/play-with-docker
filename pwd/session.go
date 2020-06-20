@@ -88,6 +88,18 @@ func (p *pwd) SessionNew(ctx context.Context, config types.SessionConfig) (*type
 	return s, nil
 }
 
+func (p *pwd) SessionExtend(s *types.Session) error {
+	defer observeAction("SessionExtend", time.Now())
+
+	log.Printf("Extending session [%s]\n", s.Id)
+
+	d, err = time.ParseDuration("24h")
+
+	s.ExpiresAt = s.ExpiresAt.Add(d)
+
+	return nil
+}
+
 func (p *pwd) SessionClose(s *types.Session) error {
 	defer observeAction("SessionClose", time.Now())
 

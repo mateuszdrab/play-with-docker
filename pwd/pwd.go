@@ -69,6 +69,7 @@ func SessionNotEmpty(e error) bool {
 type PWDApi interface {
 	SessionNew(ctx context.Context, config types.SessionConfig) (*types.Session, error)
 	SessionClose(session *types.Session) error
+	SessionExtend(session *types.Session) error
 	SessionGetSmallestViewPort(sessionId string) types.ViewPort
 	SessionDeployStack(session *types.Session) error
 	SessionGet(id string) (*types.Session, error)

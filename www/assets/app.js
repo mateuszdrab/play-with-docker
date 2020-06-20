@@ -105,6 +105,10 @@
       $scope.socket.emit('session close');
     }
 
+    $scope.extendSession = function() {
+      $scope.socket.emit('session extend');
+    }
+
     $scope.upsertInstance = function(info) {
       var i = info;
       if (!$scope.idx[i.name]) {

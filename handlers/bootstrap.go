@@ -74,6 +74,7 @@ func Register(extend HandlerExtender) {
 	corsRouter.HandleFunc("/instances/images", GetInstanceImages).Methods("GET")
 	corsRouter.HandleFunc("/sessions/{sessionId}", GetSession).Methods("GET")
 	corsRouter.HandleFunc("/sessions/{sessionId}/close", CloseSession).Methods("POST")
+	corsRouter.HandleFunc("/sessions/{sessionId}/extend", ExtendSession).Methods("POST")
 	corsRouter.HandleFunc("/sessions/{sessionId}", CloseSession).Methods("DELETE")
 	corsRouter.HandleFunc("/sessions/{sessionId}/setup", SessionSetup).Methods("POST")
 	corsRouter.HandleFunc("/sessions/{sessionId}/instances", NewInstance).Methods("POST")

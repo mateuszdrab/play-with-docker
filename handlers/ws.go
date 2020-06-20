@@ -180,6 +180,10 @@ func ws(so *socket) {
 		core.SessionClose(session)
 	})
 
+	so.On("session extend", func(args ...interface{}) {
+		core.SessionExtend(session)
+	})
+
 	so.On("instance terminal in", func(args ...interface{}) {
 		if len(args) == 2 && args[0] != nil && args[1] != nil {
 			name := args[0].(string)
